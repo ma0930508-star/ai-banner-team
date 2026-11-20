@@ -13,10 +13,11 @@
     <style>
         :root {
             --bg-dark: #070b14;
-            --card-bg: rgba(17, 24, 39, 0.78);
+            --card-bg: rgba(17, 24, 39, 0.82);
             --card-border: rgba(148, 163, 184, 0.16);
             --accent-primary: #6366f1;
             --accent-secondary: #22d3ee;
+            --accent-girl: #e879f9;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
         }
@@ -36,8 +37,8 @@
                 radial-gradient(circle at 50% 90%, rgba(139, 92, 246, 0.14), transparent 45%);
             color: var(--text-main);
             min-height: 100vh;
-            padding: 36px 16px 60px;
-            line-height: 1.55;
+            padding: 32px 16px 60px;
+            line-height: 1.6;
         }
 
         .container {
@@ -45,15 +46,16 @@
             margin: 0 auto;
         }
 
+        /* الهيدر */
         .hero-box {
             position: relative;
-            background: linear-gradient(145deg, rgba(20, 29, 48, 0.9), rgba(12, 18, 32, 0.92));
+            background: linear-gradient(145deg, rgba(20, 29, 48, 0.92), rgba(12, 18, 32, 0.95));
             border: 1px solid rgba(99, 102, 241, 0.28);
             border-radius: 22px;
-            padding: 34px 24px;
+            padding: 28px 20px;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-            margin-bottom: 36px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+            margin-bottom: 24px;
             overflow: hidden;
         }
 
@@ -83,61 +85,74 @@
             color: #a5f3fc;
             background: rgba(34, 211, 238, 0.1);
             border: 1px solid rgba(34, 211, 238, 0.28);
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
         .project-title {
             position: relative;
-            font-size: 30px;
+            font-size: 28px;
             font-weight: 800;
             background: linear-gradient(90deg, #ffffff 10%, #c7d2fe 55%, #67e8f9 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 22px;
         }
 
-        .supervisor-box {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            gap: 14px;
+        /* التبويبات */
+        .tabs-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
             background: rgba(15, 23, 42, 0.85);
-            border: 1px solid rgba(129, 140, 248, 0.35);
-            border-radius: 16px;
-            padding: 12px 22px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            padding: 10px;
+            margin-bottom: 28px;
         }
 
-        .supervisor-icon {
-            width: 46px;
-            height: 46px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, var(--accent-primary), #8b5cf6);
-            color: #ffffff;
+        .tab-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-muted);
+            font-family: 'Tajawal', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            padding: 12px 14px;
+            border-radius: 13px;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
-            flex-shrink: 0;
-            box-shadow: 0 6px 18px rgba(99, 102, 241, 0.4);
+            gap: 8px;
+            transition: all 0.22s ease;
         }
 
-        .supervisor-details {
-            text-align: right;
-        }
-
-        .supervisor-label {
-            font-size: 12px;
-            color: var(--accent-secondary);
-            font-weight: 700;
-        }
-
-        .supervisor-name {
-            font-size: 17px;
-            font-weight: 700;
+        .tab-btn:hover {
             color: #ffffff;
+            background: rgba(99, 102, 241, 0.12);
         }
 
+        .tab-btn.active {
+            color: #ffffff;
+            background: linear-gradient(135deg, var(--accent-primary), #4f46e5);
+            border-color: rgba(165, 180, 252, 0.4);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
+        }
+
+        .tab-panel {
+            display: none;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* قسم الطلاب */
         .section-header {
             display: flex;
             align-items: center;
@@ -179,7 +194,6 @@
         .member-card {
             background: var(--card-bg);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--card-border);
             border-radius: 18px;
             padding: 24px 18px;
@@ -189,18 +203,17 @@
 
         .member-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(34, 211, 238, 0.45);
-            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(99, 102, 241, 0.16);
+            border-color: rgba(232, 121, 249, 0.45);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(232, 121, 249, 0.14);
         }
 
         .avatar-ring {
-            width: 74px;
-            height: 74px;
+            width: 78px;
+            height: 78px;
             border-radius: 50%;
             padding: 3px;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            background: linear-gradient(135deg, var(--accent-girl), var(--accent-primary), var(--accent-secondary));
             margin: 0 auto 14px auto;
-            box-shadow: 0 6px 18px rgba(34, 211, 238, 0.18);
         }
 
         .avatar-inner {
@@ -208,18 +221,16 @@
             height: 100%;
             border-radius: 50%;
             background-color: #0f172a;
-            color: #a5b4fc;
+            color: #f5d0fe;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
             overflow: hidden;
         }
 
-        .avatar-inner img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .avatar-inner svg {
+            width: 62px;
+            height: 62px;
         }
 
         .member-name {
@@ -235,25 +246,164 @@
             color: var(--text-muted);
         }
 
+        /* قسم الدكتور */
+        .doctor-card {
+            max-width: 580px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 22px;
+            padding: 34px 24px;
+            text-align: center;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.38);
+        }
+
+        .doctor-photo-frame {
+            width: 220px;
+            height: 220px;
+            border-radius: 24px;
+            padding: 4px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            margin: 0 auto 20px auto;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+        }
+
+        .doctor-photo-box {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            background: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: #a5f3fc;
+            font-size: 52px;
+        }
+
+        .doctor-photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            cursor: pointer;
+            transition: transform 0.25s ease;
+        }
+
+        .doctor-photo-box img:hover {
+            transform: scale(1.03);
+        }
+
+        .doctor-badge {
+            display: inline-block;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: #a5f3fc;
+            background: rgba(34, 211, 238, 0.12);
+            border: 1px solid rgba(34, 211, 238, 0.28);
+            padding: 4px 14px;
+            border-radius: 999px;
+            margin-bottom: 10px;
+        }
+
+        .doctor-name {
+            font-size: 23px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .doctor-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* قسم التصميم */
+        .design-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 22px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.38);
+        }
+
+        .design-title {
+            font-size: 19px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .design-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+
+        .pdf-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .pdf-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 18px;
+            border-radius: 12px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            color: #ffffff;
+            background: linear-gradient(135deg, var(--accent-primary), #4f46e5);
+            border: 1px solid rgba(165, 180, 252, 0.35);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .pdf-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
+        }
+
+        .pdf-btn.secondary {
+            background: rgba(34, 211, 238, 0.12);
+            color: #a5f3fc;
+            border-color: rgba(34, 211, 238, 0.3);
+        }
+
+        .pdf-viewer-box {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            background: #0f172a;
+        }
+
+        .pdf-viewer-box iframe {
+            width: 100%;
+            height: 680px;
+            border: none;
+            display: block;
+        }
+
         @media (max-width: 920px) {
             .team-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media (max-width: 600px) {
-            .hero-box {
-                padding: 26px 18px;
-                border-radius: 18px;
+        @media (max-width: 650px) {
+            .tabs-bar {
+                grid-template-columns: 1fr;
+                gap: 8px;
             }
 
             .project-title {
-                font-size: 24px;
-            }
-
-            .supervisor-box {
-                width: 100%;
-                justify-content: flex-start;
+                font-size: 23px;
             }
 
             .team-grid {
@@ -261,8 +411,13 @@
                 gap: 14px;
             }
 
-            .member-card {
-                padding: 20px 16px;
+            .doctor-photo-frame {
+                width: 185px;
+                height: 185px;
+            }
+
+            .pdf-viewer-box iframe {
+                height: 460px;
             }
         }
     </style>
@@ -276,71 +431,142 @@
                 <span>بانر تعليمي تفاعلي</span>
             </div>
             <h1 class="project-title">وحدة الذكاء الاصطناعي</h1>
-
-            <div class="supervisor-box">
-                <div class="supervisor-icon">
-                    <i class="fa-solid fa-user-tie"></i>
-                </div>
-                <div class="supervisor-details">
-                    <div class="supervisor-label">تحت إشراف</div>
-                    <div class="supervisor-name">أ.د / نجلاء سعيد</div>
-                </div>
-            </div>
         </header>
 
-        <section>
+        <nav class="tabs-bar" aria-label="أقسام الصفحة">
+            <button class="tab-btn active" data-tab="students-tab" type="button">
+                <i class="fa-solid fa-users-gear"></i>
+                <span>الطلاب</span>
+            </button>
+            <button class="tab-btn" data-tab="doctor-tab" type="button">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>الدكتور</span>
+            </button>
+            <button class="tab-btn" data-tab="design-tab" type="button">
+                <i class="fa-solid fa-panorama"></i>
+                <span>التصميم</span>
+            </button>
+        </nav>
+
+        <!-- تبويب الطلاب -->
+        <section class="tab-panel active" id="students-tab">
             <div class="section-header">
                 <h2 class="section-title">
-                    <i class="fa-solid fa-users-gear"></i>
+                    <i class="fa-solid fa-users"></i>
                     <span>فريق تصميم البانر والمحتوى</span>
                 </h2>
-                <span class="count-pill" id="membersCount">15 أعضاء</span>
+                <span class="count-pill" id="membersCount">15 عضوة</span>
             </div>
-
             <div class="team-grid" id="teamGrid"></div>
+        </section>
+
+        <!-- تبويب الدكتور -->
+        <section class="tab-panel" id="doctor-tab">
+            <div class="doctor-card">
+                <div class="doctor-photo-frame">
+                    <div class="doctor-photo-box" id="doctorPhotoBox">
+                        <a href="images/doctor.jpeg" target="_blank" rel="noopener" title="اضغطي لعرض الصورة بالحجم الكامل" style="width:100%; height:100%; display:block;">
+                            <img src="images/doctor.jpeg" alt="أ.د / نجلاء سعيد" onerror="this.parentElement.style.display='none'; document.getElementById('doctorFallbackIcon').style.display='flex';">
+                        </a>
+                        <span id="doctorFallbackIcon" style="display:none; width:100%; height:100%; align-items:center; justify-content:center;">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </span>
+                    </div>
+                </div>
+                <span class="doctor-badge">تحت إشراف</span>
+                <h2 class="doctor-name">أ.د / نجلاء سعيد</h2>
+                <p class="doctor-desc">إشراف علمي وأكاديمي على مشروع البانر التعليمي لوحدة الذكاء الاصطناعي</p>
+            </div>
+        </section>
+
+        <!-- تبويب التصميم -->
+        <section class="tab-panel" id="design-tab">
+            <div class="design-card">
+                <h2 class="design-title">تصميم البانر التعليمي</h2>
+                <p class="design-subtitle">وحدة الذكاء الاصطناعي (ملف PDF بجودة عالية)</p>
+
+                <div class="pdf-actions">
+                    <a class="pdf-btn" href="images/banner.pdf" target="_blank" rel="noopener">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>فتح ملف التصميم في نافذة كاملة</span>
+                    </a>
+                    <a class="pdf-btn secondary" href="images/banner.pdf" download="banner.pdf">
+                        <i class="fa-solid fa-download"></i>
+                        <span>تحميل ملف PDF</span>
+                    </a>
+                </div>
+
+                <div class="pdf-viewer-box">
+                    <iframe src="images/banner.pdf" title="ملف تصميم البانر التعليمي"></iframe>
+                </div>
+            </div>
         </section>
     </div>
 
     <script>
+        const girlAvatarSVG = `
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17 31C17 19.5 23.8 13 32 13C40.2 13 47 19.5 47 31V44C47 46.2 45.2 48 43 48H21C18.8 48 17 46.2 17 44V31Z" fill="#e879f9"/>
+                <path d="M18 57C18 49.8 24.3 45 32 45C39.7 45 46 49.8 46 57V59H18V57Z" fill="#a855f7"/>
+                <rect x="29" y="38" width="6" height="8" rx="3" fill="#fbcfe8"/>
+                <circle cx="32" cy="31" r="10.5" fill="#fdf2f8"/>
+                <path d="M21 29C21.5 20.5 26.5 17 32 17C37.5 17 42.5 20.5 43 29C39.5 25 35.5 23.5 32 23.5C28.5 23.5 24.5 25 21 29Z" fill="#f0abfc"/>
+                <circle cx="28.5" cy="31.5" r="1.4" fill="#1e1b4b"/>
+                <circle cx="35.5" cy="31.5" r="1.4" fill="#1e1b4b"/>
+                <path d="M29.2 35.8C30.4 37.2 33.6 37.2 34.8 35.8" stroke="#db2777" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+        `;
+
         const students = [
-            { name: 'حنين محمد حسن الدمرداش', role: 'مصمم البانر والمحتوى', photo: null, icon: 'fa-user-graduate' },
-            { name: 'سمر صبري شعبان إبراهيم', role: 'مصمم البانر والمحتوى', photo: null, icon: 'fa-user' },
-            { name: 'منه الله ايمن عبدالرحمن محمد الدمرداش', role: 'مصمم البانر والمحتوى', photo: null, icon: 'fa-user-graduate' },
-            { name: 'منه الله خالد الشحات سراج', role: 'مصمم البانر والمحتوى', photo: null, icon: 'fa-user' },
-            { name: 'منه الله ايمن فتحي محمد قطب', role: 'مصمم البانر والمحتوى', photo: null, icon: 'fa-user-graduate' },
-            { name: 'شذي محمد حسن السيد', role: 'مصمم البانر والمحتوى', photo: null, icon: 'fa-user' },
-            { name: 'اشرقت احمد يوسف', role: 'مصمم البانر والمحتوى', photo: null, icon: 'fa-user-graduate' },
-            { name: 'اسماء ياسر ناصف عبد المنعم', role: 'مصمم البانر والمحتوى', photo: null, icon: 'fa-user' },
-            { name: 'اميره محمد عبدالرؤوف محمد', role: 'مصمم البانر والمحتوى', photo: null, icon: 'fa-user-graduate' },
-            { name: 'روضه ياسر مصطفى عطيه', role: 'مصمم البانر والمحتوى', photo: null, icon: 'fa-user' },
-            { name: 'بسملة السيد عبده سعيد', role: 'مصمم البانر والمحتوى', photo: null, icon: 'fa-user-graduate' },
-            { name: 'منه محمد احمد سعيد', role: 'مصمم البانر والمحتوى', photo: null, icon: 'fa-user' },
-            { name: 'شهد نادر أحمد إبراهيم', role: 'مصمم البانر والمحتوى', photo: null, icon: 'fa-user-graduate' },
-            { name: 'زينب وائل سمير عتريس', role: 'مصمم البانر والمحتوى', photo: null, icon: 'fa-user' },
-            { name: 'هيام حسن محمد حسن', role: 'مصمم البانر والمحتوى', photo: null, icon: 'fa-user-graduate' }
+            { name: 'حنين محمد حسن الدمرداش', role: 'مصممة البانر والمحتوى', icon: 'fa-user-graduate' },
+            { name: 'سمر صبري شعبان إبراهيم', role: 'مصممة البانر والمحتوى', icon: 'fa-user-graduate' },
+            { name: 'منه الله ايمن عبدالرحمن محمد الدمرداش', role: 'مصممة البانر والمحتوى', icon: 'fa-user-graduate' },
+            { name: 'منه الله خالد الشحات سراج', role: 'مصممة البانر والمحتوى', icon: 'fa-user-graduate' },
+            { name: 'منه الله ايمن فتحي محمد قطب', role: 'مصممة البانر والمحتوى', icon: 'fa-user-graduate' },
+            { name: 'شذي محمد حسن السيد', role: 'مصممة البانر والمحتوى', icon: 'fa-user-graduate' },
+            { name: 'اشرقت احمد يوسف', role: 'مصممة البانر والمحتوى', icon: 'fa-user-graduate' },
+            { name: 'اسماء ياسر ناصف عبد المنعم', role: 'مصممة البانر والمحتوى', icon: 'fa-user-graduate' },
+            { name: 'اميره محمد عبدالرؤوف محمد', role: 'مصممة البانر والمحتوى', icon: 'fa-user-graduate' },
+            { name: 'روضه ياسر مصطفى عطيه', role: 'مصممة البانر والمحتوى', icon: 'fa-user-graduate' },
+            { name: 'بسملة السيد عبده سعيد', role: 'مصممة البانر والمحتوى', icon: 'fa-user-graduate' },
+            { name: 'منه محمد احمد سعيد', role: 'مصممة البانر والمحتوى', icon: 'fa-user-graduate' },
+            { name: 'شهد نادر أحمد إبراهيم', role: 'مصممة البانر والمحتوى', icon: 'fa-user-graduate' },
+            { name: 'زينب وائل سمير عتريس', role: 'مصممة البانر والمحتوى', icon: 'fa-user-graduate' },
+            { name: 'هيام حسن محمد حسن', role: 'مصممة البانر والمحتوى', icon: 'fa-user-graduate' }
         ];
 
         const grid = document.getElementById('teamGrid');
         const countEl = document.getElementById('membersCount');
-        countEl.textContent = `${students.length} أعضاء`;
+        countEl.textContent = `${students.length} عضوة`;
 
         students.forEach(student => {
             const card = document.createElement('div');
             card.className = 'member-card';
-
-            const avatarContent = student.photo
-                ? `<img src="${student.photo}" alt="${student.name}">`
-                : `<i class="fa-solid ${student.icon}"></i>`;
-
             card.innerHTML = `
                 <div class="avatar-ring">
-                    <div class="avatar-inner">${avatarContent}</div>
+                    <div class="avatar-inner">
+                        ${girlAvatarSVG}
+                    </div>
                 </div>
                 <div class="member-name">${student.name}</div>
                 <div class="member-role">${student.role}</div>
             `;
-
             grid.appendChild(card);
+        });
+
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.getAttribute('data-tab');
+
+                tabButtons.forEach(b => b.classList.remove('active'));
+                tabPanels.forEach(p => p.classList.remove('active'));
+
+                btn.classList.add('active');
+                document.getElementById(targetId).classList.add('active');
+            });
         });
     </script>
 
